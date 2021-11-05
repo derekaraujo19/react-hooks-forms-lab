@@ -22,27 +22,13 @@ function ShoppingList({ items, setItems }) {
 
 
 
-  // New Item State:
-  const [itemName, setItemName] = useState("");
-  const [itemCategory, setItemCategory] = useState("Produce");
 
 
-function handleNewItemNameChange(event) {
-  setItemName(event.target.value);
-}
-function handleNewItemCatChange(event) {
-  setItemCategory(event.target.value);
-}
-
-
-function onItemFormSubmit(e, newItem) {
-  e.preventDefault();
+function onItemFormSubmit(newItem) {
   // console.log(newItem)
   const newItemsToDisplay = [...items, newItem];
   setItems(newItemsToDisplay)
 
-  setItemName('');
-  setItemCategory("Produce");
 }
 
 
@@ -61,7 +47,7 @@ function onItemFormSubmit(e, newItem) {
 
   return (
     <div className="ShoppingList">
-      <ItemForm itemName={itemName} itemCategory={itemCategory} onNameChange={handleNewItemNameChange} onCatChange={handleNewItemCatChange} onItemFormSubmit={onItemFormSubmit} setItems={setItems}/>
+      <ItemForm onItemFormSubmit={onItemFormSubmit} setItems={setItems}/>
       <Filter onCategoryChange={handleCategoryChange} search={searchFood} onSearchChange={handleOnSearchChange} selectedCategory={selectedCategory}/>
       <ul className="Items">
         {itemsToDisplay.map((item) => (
